@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <link href="myStyle.css" rel="stylesheet">
+    <title>Assignment 1</title>
+  </head>
+  <body>
+    <div>
+      <nav class="nva-container">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+      </nav>
+      <div class="input-container">
+        <form>
+          <div class="input-group">
+            <input class="form-control" id="message-input" type="text" placeholder="Please enter a message">
+            <div class="input-group-append">
+              <input class="btn btn-outline-secondary" type="button" value="Add" onclick="submitHandler();">
+              <input class="btn btn-outline-secondary" type="button" value="Clear" onclick="clearHandler();">
+            </div>
+          </div>
+        </form>
+      </div>
+      <input type="button" value="show" onclick="showList();">
+      <input type="button" value="hide" onclick="hideList();">
+      <div id="message-list-container">
+        <ul id='messages-list' class="list-group">
+        </ul>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <!DOCTYPE html>
+  </body>
+</html>
