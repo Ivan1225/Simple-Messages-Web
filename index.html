@@ -1,6 +1,6 @@
 <html>
   <head>
-    <link href="style.css" rel="stylesheet">
+    <link href="myStyle.css" rel="stylesheet">
     <title>Assignment 1</title>
   </head>
   <body>
@@ -20,20 +20,23 @@
           <div class="input-group">
             <input class="form-control" id="message-input" type="text" placeholder="Please enter a message">
             <div class="input-group-append">
-              <input class="btn btn-outline-secondary" type="button" value="Add" onclick="submitHandler();">
+              <input class="btn btn-outline-secondary" id="submit" type="button" value="Add">
               <input class="btn btn-outline-secondary" type="button" value="Clear" onclick="clearHandler();">
             </div>
           </div>
         </form>
       </div>
-      <input type="button" value="show" onclick="showList();">
-      <input type="button" value="hide" onclick="hideList();">
+      <div class="action-container">
+        <input class="btn btn-outline-secondary" type="button" value="Show" onclick="showList();">
+        <input class="btn btn-outline-secondary" type="button" value="Hide" onclick="hideList();">
+        <input class="btn btn-outline-secondary" type="button" value="Destroy ALl" onclick="destroyAll();">
+      </div>
       <div id="message-list-container">
-        <ul id='messages-list' class="list-group">
+        <ul id='messagesList' class="list-group">
         </ul>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="main.js"></script>
     <!DOCTYPE html>
   </body>
 </html>
