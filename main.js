@@ -13,6 +13,7 @@ const initialMessage = {
   3: 'Clear button can clear input message',
   4: 'Destroy button can clear stored message',
 }
+
 function init() {
   var submitButton = document.getElementById("submit");
   submitButton.onclick = getInput;
