@@ -17,14 +17,13 @@ const initialMessage = {
 function init() {
   var submitButton = document.getElementById("submit");
   submitButton.onclick = getInput;
-
+  initializeMessage();
   display();
   document.getElementById("messagesList").style.display = "none";
   document.getElementById("initialMessage").style.display = "none";
 }
 
 function initializeMessage() {
-  document.getElementById("initialMessage").style.display = "block";
   var ul = document.getElementById("initialMessage");
   ul.innerHTML = '';
   var li = createMessage({content: JSON.stringify(initialMessage)});
@@ -32,22 +31,18 @@ function initializeMessage() {
 }
 
 function display() {
-  if (messages.length === 0) {
-    initializeMessage();
-  } else {
-    if (localStorage) {
-      for (let i = 0; i<localStorage.length;i++) {
-        let k = localStorage.key(i);
-        if(k.substring(0,3) == "mes") {
-          var item = localStorage.getItem(k);
-          var message = JSON.parse(item);
-          messages.push(message);
-        }
-        displayMessagesOnPage();
+  if (localStorage) {
+    for (let i = 0; i<localStorage.length;i++) {
+      let k = localStorage.key(i);
+      if(k.substring(0,3) == "mes") {
+        var item = localStorage.getItem(k);
+        var message = JSON.parse(item);
+        messages.push(message);
       }
-    } else {
-      console.log("Error: no local storage")
+      displayMessagesOnPage();
     }
+  } else {
+    console.log("Error: no local storage")
   }
 }
 
@@ -138,8 +133,11 @@ function deleteItem(e) {
 }
 
 function showList() {
-  document.getElementById("initialMessage").style.display = "block";
-  document.getElementById("messagesList").style.display = "block";
+  if (messages.length === 0) {
+    document.getElementById("initialMessage").style.display = "block";
+  } else {
+    document.getElementById("messagesList").style.display = "block";
+  }
 }
 
 function hideList() {
@@ -151,5 +149,6 @@ function destroyAll() {
   messages = new Array;
   localStorage.clear();
   document.getElementById('messagesList').innerHTML = '';
+  document.getElementById('initialMessage').innerHTML = '';
   display();
 }
