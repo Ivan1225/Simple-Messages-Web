@@ -18,23 +18,36 @@ function init() {
   var submitButton = document.getElementById("submit");
   submitButton.onclick = getInput;
 
-  document.getElementById("message-list-container").style.display = "none";
   display();
+  document.getElementById("messagesList").style.display = "none";
+  document.getElementById("initialMessage").style.display = "none";
+}
+
+function initializeMessage() {
+  document.getElementById("initialMessage").style.display = "block";
+  var ul = document.getElementById("initialMessage");
+  ul.innerHTML = '';
+  var li = createMessage({content: JSON.stringify(initialMessage)});
+  ul.appendChild(li);
 }
 
 function display() {
-  if (localStorage) {
-    for (let i = 0; i<localStorage.length;i++) {
-      let k = localStorage.key(i);
-      if(k.substring(0,3) == "mes") {
-        var item = localStorage.getItem(k);
-        var message = JSON.parse(item);
-        messages.push(message);
-      }
-      displayMessagesOnPage();
-    }
+  if (messages.length === 0) {
+    initializeMessage();
   } else {
-    console.log("Error: no local storage")
+    if (localStorage) {
+      for (let i = 0; i<localStorage.length;i++) {
+        let k = localStorage.key(i);
+        if(k.substring(0,3) == "mes") {
+          var item = localStorage.getItem(k);
+          var message = JSON.parse(item);
+          messages.push(message);
+        }
+        displayMessagesOnPage();
+      }
+    } else {
+      console.log("Error: no local storage")
+    }
   }
 }
 
@@ -45,11 +58,13 @@ function displayMessagesOnPage() {
     var message = messages[i];
     var li = createMessage(message);
     listFragment.appendChild(li);
-}
-ul.appendChild(listFragment);
+  }
+
+  ul.appendChild(listFragment);
 }
 
 function displayMessageOnPage(message) {
+  document.getElementById("initialMessage").style.display = "none";
   var ul = document.getElementById('messagesList');
   var li = createMessage(message)
 
@@ -63,14 +78,15 @@ function createMessage(message) {
 
   var spanContent = document.createElement("span");
   spanContent.innerHTML = message.content;
-
-  var spanDelete = document.createElement("span");
-  spanDelete.setAttribute("class", "delete");
-  spanDelete.innerHTML = "&nbsp;&#10007;&nbsp;";
-
-  spanDelete.onclick = deleteItem;
   li.appendChild(spanContent);
-  li.appendChild(spanDelete);
+
+  if (messages.length !== 0) {
+    var spanDelete = document.createElement("span");
+    spanDelete.setAttribute("class", "delete");
+    spanDelete.innerHTML = "&nbsp;&#10007;&nbsp;";
+    spanDelete.onclick = deleteItem;
+    li.appendChild(spanDelete);
+  }
 
   return li;
 }
@@ -99,8 +115,6 @@ function saveMessage(message) {
   }
 }
 
-
-
 const clearHandler = () => {
   document.getElementById("message-input").value = '';
 }
@@ -124,11 +138,13 @@ function deleteItem(e) {
 }
 
 function showList() {
-  document.getElementById("message-list-container").style.display = "block";
+  document.getElementById("initialMessage").style.display = "block";
+  document.getElementById("messagesList").style.display = "block";
 }
 
 function hideList() {
-  document.getElementById("message-list-container").style.display = "none";
+  document.getElementById("initialMessage").style.display = "none";
+  document.getElementById("messagesList").style.display = "none";
 }
 
 function destroyAll() {
