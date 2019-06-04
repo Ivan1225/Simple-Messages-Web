@@ -43,7 +43,6 @@ export default class ShowList extends Component {
       initialMessages,
     } = this.props;
 
-    console.log(initialMessages);
     const hasMessages = messages.length > 0;
     const mes = hasMessages ? messages : initialMessages;
 

@@ -22,11 +22,15 @@ export default class Input extends Component {
 
   submitMessage = (e) => {
     e.preventDefault();
-    this.props.addMessageHandler({ text: this.state.text });
+    if (this.state.text === '') {
+      alert('Input message cannot be empty.')
+    } else {
+      this.props.addMessageHandler({ text: this.state.text });
 
-    this.setState({
-      text: '',
-    });
+      this.setState({
+        text: '',
+      });
+    }
   }
 
   clearMessage = (e) => {
