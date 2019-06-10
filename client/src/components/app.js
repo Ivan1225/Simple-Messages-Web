@@ -16,9 +16,28 @@ const Home = () => {
   );
 }
 export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      apiResponse: '',
+    }
+  }
+  callApi = () => {
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState( {apiResponse: res} ))
+      .catch(err => err);
+  }
+
+  componentDidMount() {
+    this.callApi();
+  }
+
   render() {
     return (
       <div className="react-app">
+        <p className="App-intro">{this.state.apiResponse}</p>
         <h1>Messages List</h1>
         <Router>
           <div>
