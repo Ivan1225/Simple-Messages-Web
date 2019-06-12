@@ -15,7 +15,27 @@ export default class ShowList extends Component {
 
     this.state = {
       showList: false,
+      messages: [],
     }
+  }
+
+  fetchData(url) {
+    this.setState({ isLoading: true });
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        this.setState({ isLoading: false });
+        return response;
+      })
+      .then((response) => response.json())
+      .then((messages) => this.setState({ messages }))
+      .catch(() => this.setState({ hasErrored: true }));
+  }
+
+  componentDidMount() {
+    this.fetchData('http://localhost:9000/messages');
   }
 
   clearMessages = (e) => {

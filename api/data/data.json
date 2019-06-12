@@ -1,1 +1,1 @@
-[{"id":2,"name":"Jack","text":"HULLO"},{"id":3,"{messages: content}":""},{"id":4,"{\"messages\": \"content\"}":""},{"id":5,"name":"Jack","text":"HULLO"}]
+{"messages":[],"initialMessages":["Initial messages show up here","You need to add some message to start","Clear button can clear input message","Destroy button can clear stored message"]}
