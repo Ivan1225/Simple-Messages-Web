@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import Detail from '../components/detail';
 
 const mapStateToProps = (state, { match, history }) => {
-  console.log(history);
   const { messages } = state.main;
 
   return {

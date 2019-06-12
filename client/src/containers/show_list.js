@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    clearMessagesHandler: (employeesId, selectAllOn) => {
-      dispatch(clearMessagesHandler(employeesId, selectAllOn));
+    clearMessagesHandler: () => {
+      dispatch(clearMessagesHandler());
     },
   };
 };
