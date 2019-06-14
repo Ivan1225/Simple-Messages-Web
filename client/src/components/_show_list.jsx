@@ -7,37 +7,15 @@ export default class ShowList extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
     initialMessages: PropTypes.array.isRequired,
-    clearMessagesHandler: PropTypes.func.isRequired,
+    // clearMessagesHandler: PropTypes.func.isRequired,
   };
 
   constructor() {
     super();
-
     this.state = {
       showList: false,
-      messages: [],
     }
   }
-
-  fetchData(url) {
-    this.setState({ isLoading: true });
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        this.setState({ isLoading: false });
-        return response;
-      })
-      .then((response) => response.json())
-      .then((messages) => this.setState({ messages }))
-      .catch(() => this.setState({ hasErrored: true }));
-  }
-
-  componentDidMount() {
-    this.fetchData('http://localhost:9000/messages');
-  }
-
   clearMessages = (e) => {
     e.preventDefault();
     this.props.clearMessagesHandler();
@@ -81,23 +59,23 @@ export default class ShowList extends Component {
             value="Hide"
             onClick={this.hideListHandler}
           />
-          <input
+          {/* <input
             className="btn btn-outline-secondary"
             type="button"
             value="Destroy All"
             onClick={this.clearMessages}
-          />
+          /> */}
         </div>
         {this.state.showList && (
           <div id="message-list-container">
             <ul className="list-group">
               {
-                mes.map((message, i) => {
+                mes.map(message => {
+                  console.log(message)
                   return (
-                    <div key={i}>
+                    <div key={message.id}>
                       <Item
                         message={message}
-                        index={i}
                         hasMessages={hasMessages}
                       />
                     </div>

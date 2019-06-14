@@ -1,1 +1,1 @@
-{"messages":[],"initialMessages":["Initial messages show up here","You need to add some message to start","Clear button can clear input message","Destroy button can clear stored message"]}
+{"messages":[{"id":1,"text":"aaa11223344111"},{"id":2,"text":"asd12"},{"id":3,"text":"asd"},{"id":4,"text":"asd"}],"initialMessages":[{"text":"Initial messages show up here"},{"text":"You need to add some message to start"},{"text":"Clear button can clear input message"},{"text":"Destroy button can clear stored message"}]}

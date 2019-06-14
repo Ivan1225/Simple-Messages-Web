@@ -2,36 +2,37 @@ import { MAIN } from '../actions/action_types';
 
 const initialState = {
   messages: [],
-  initialMessages: [
-    { text: 'Initial messages show up here' },
-    { text: 'You need to add some message to start' },
-    { text: 'Clear button can clear input message' },
-    { text: 'Destroy button can clear stored message' },
-  ],
-};
-
-export default function (state = initialState, action) {
+  initialMessages: [],
+}
+export default (state = initialState, action) => {
   switch (action.type) {
-    case MAIN.ADD_MESSAGE_HANDLER:
+    case MAIN.FETCH_MESSAGES_SUCCESS:
       return {
         ...state,
-        messages: [
-          ...state.messages,
-          Object.assign({}, action.message)
-        ],
+        messages: action.data.messages,
+        initialMessages: action.data.initialMessages,
       };
-    case MAIN.DELETE_MESSAGE_HANDLER:
+    case MAIN.CREATE_MESSAGE_SUCCESS:
+      console.log(action.message)
       return {
         ...state,
-        messages: state.messages.filter((data, i) => i !== action.id),
-      };
-    case MAIN.CLEAR_MESSAGES_HANDLER:
+        messages: [...state.messages, Object.assign({}, action.message)]
+      }
+    case MAIN.UPDATE_MESSAGE_SUCCESS:
+      const newState = {...state};
+      console.log(action)
+      const index = newState.messages.findIndex(o => o.id === action.message.id);
+      newState.messages[index].text = action.message.text;
+
+      return newState;
+    case MAIN.DELETE_MESSAGE_SUCCESS:
+      const newMessages = state.messages.filter(o => o.id !== action.id);
+
       return {
         ...state,
-        messages: [],
-        initialMessages: [],
+        messages: newMessages
       };
     default:
       return state;
   }
-}
+};

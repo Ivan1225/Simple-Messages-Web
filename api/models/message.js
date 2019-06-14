@@ -1,34 +1,11 @@
 const filename = '/home/izhang/Workspace/Assignment_1/api/data/data.json'
 let data = require(filename)
 const helper = require('../helpers/helper.js')
-
-let { messages } = data
-const { initialMessages } = data
+let {messages} = data
 
 function getMessages() {
-    console.log(data)
-    console.log(data.messages)
-    console.log(data.initialMessages)
     return new Promise((resolve, reject) => {
-        if (messages.length === 0) {
-            reject({
-                message: 'no messages available',
-                status: 202
-            })
-        }
-        resolve(messages)
-    })
-}
-
-function getInitialMessages() {
-    return new Promise((resolve, reject) => {
-        if (initialMessages.length === 0) {
-            reject({
-                message: 'no messages available',
-                status: 202
-            })
-        }
-        resolve(initialMessages)
+        resolve(data)
     })
 }
 
@@ -82,5 +59,5 @@ module.exports = {
     getMessages,
     getMessage,
     updateMessage,
-    deleteMessage
+    deleteMessage,
 }

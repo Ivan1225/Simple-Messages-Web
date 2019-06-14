@@ -4,7 +4,7 @@ import '../styles/style.css';
 
 export default class Input extends Component {
   static propTypes = {
-    addMessageHandler: PropTypes.func.isRequired,
+    addMessage: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -25,7 +25,7 @@ export default class Input extends Component {
     if (this.state.text === '') {
       alert('Input message cannot be empty.')
     } else {
-      this.props.addMessageHandler({ text: this.state.text });
+      this.props.addMessage(this.state.text);
 
       this.setState({
         text: '',

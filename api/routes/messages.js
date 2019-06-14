@@ -31,8 +31,7 @@ router.get('/:id', validate.mustBeInteger, async (req, res) => {
 router.post('/', async (req, res) => {
     await message.insertMessage(req.body)
     .then(message => res.status(201).json({
-        message: `The message #${message.id} has been created`,
-        content: message
+        message,
     }))
     .catch(err => res.status(500).json({ message: err.message }))
 })
@@ -41,8 +40,7 @@ router.put('/:id', validate.mustBeInteger, async (req, res) => {
     const id = parseInt(req.params.id, 10)
     await message.updateMessage(id, req.body)
     .then(message => res.json({
-        message: `The message #${id} has been updated`,
-        content: message
+        message,
     }))
     .catch(err => {
         if (err.status) {
@@ -57,7 +55,7 @@ router.delete('/:id', validate.mustBeInteger, async (req, res) => {
 
     await message.deleteMessage(id)
     .then(message => res.json({
-        message: `The message #${id} has been updated`,
+        message,
     }))
     .catch(err => {
         if (err.status) {

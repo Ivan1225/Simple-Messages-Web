@@ -4,12 +4,27 @@ import '../styles/style.css';
 
 export default class Detail extends React.Component {
   static propTypes = {
-    message: PropTypes.string.isRequired,
+    message: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    updateMessage: PropTypes.func.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+    this.mes = React.createRef();
+  }
 
   goBack = () => {
     this.props.history.push('/');
+  }
+
+  update = () => {
+    const data = {
+      id: this.props.message.id,
+      newMessage: this.mes.current.value
+    };
+    this.props.updateMessage(data);
+    this.goBack();
   }
 
   render() {
@@ -19,8 +34,14 @@ export default class Detail extends React.Component {
           Detail
         </h2>
         <div>
-          {this.props.message}
+          <input
+            type="text"
+            ref={this.mes}
+            defaultValue={this.props.message.text}
+            required
+          />
         </div>
+        <input type="button" value="Save and Exit" className="btn btn-outline-secondary" onClick={this.update} />
         <input type="button" value="back" className="btn btn-outline-secondary" onClick={this.goBack} />
       </Fragment>
     )

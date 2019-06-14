@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import Input from '../components/_input';
-import { addMessageHandler } from '../actions/main';
+import { createMessage } from '../actions/main';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addMessageHandler: (message) => {
-      dispatch(addMessageHandler(message));
+    addMessage: (message) => {
+      dispatch(createMessage(message));
     },
   };
 };
