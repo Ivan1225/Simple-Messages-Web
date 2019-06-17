@@ -23,7 +23,7 @@ export default class ShowList extends Component {
 
     return (
       <div className="row">
-        {hasMessages && (<Link className="item-link" to={`/${message.id}`} />)}
+        {hasMessages && (<Link className="item-link" exact strict to={`/${message.id}/view`} />)}
         <div className="col-md-10">
           <li className="list-group-item clearfix">
             {message.text}

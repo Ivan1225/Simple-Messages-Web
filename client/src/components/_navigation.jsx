@@ -9,14 +9,16 @@ export default function Navigation() {
         <li className="nav-item">
           <Link
             className="nav-link active"
+            exact
             to="/"
-          >
+            >
             Home
           </Link>
         </li>
         <li className="nav-item">
           <Link
             className="nav-link active"
+            exact
             to="/about"
           >
             About

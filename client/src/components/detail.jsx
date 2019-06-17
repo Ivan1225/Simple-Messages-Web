@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/style.css';
 
-export default class Detail extends React.Component {
+export default class Detail extends Component {
   static propTypes = {
     message: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -19,12 +19,16 @@ export default class Detail extends React.Component {
   }
 
   update = () => {
-    const data = {
-      id: this.props.message.id,
-      newMessage: this.mes.current.value
-    };
-    this.props.updateMessage(data);
-    this.goBack();
+    if (this.mes.current.value === '') {
+     alert("Message cannot be empty")
+    } else {
+      const data = {
+        id: this.props.message.id,
+        newMessage: this.mes.current.value
+      };
+      this.props.updateMessage(data);
+      this.goBack();
+    }
   }
 
   render() {
@@ -37,7 +41,7 @@ export default class Detail extends React.Component {
           <input
             type="text"
             ref={this.mes}
-            defaultValue={this.props.message.text}
+            defaultValue={this.props.message===undefined ? '' : this.props.message.text}
             required
           />
         </div>
