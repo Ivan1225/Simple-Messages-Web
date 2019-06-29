@@ -23,7 +23,7 @@ export default class Detail extends Component {
      alert("Message cannot be empty")
     } else {
       const data = {
-        id: this.props.message.id,
+        id: this.props.message._id,
         newMessage: this.mes.current.value
       };
       this.props.updateMessage(data);
@@ -32,6 +32,7 @@ export default class Detail extends Component {
   }
 
   render() {
+    console.log(this.props.message)
     return (
       <Fragment>
         <h2>
@@ -41,7 +42,7 @@ export default class Detail extends Component {
           <input
             type="text"
             ref={this.mes}
-            defaultValue={this.props.message===undefined ? '' : this.props.message.text}
+            defaultValue={this.props.message===undefined ? '' : this.props.message.content}
             required
           />
         </div>

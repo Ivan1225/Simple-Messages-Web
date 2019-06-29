@@ -6,7 +6,6 @@ import '../styles/style.css';
 export default class ShowList extends Component {
   static propTypes = {
     messages: PropTypes.array.isRequired,
-    initialMessages: PropTypes.array.isRequired,
     // clearMessagesHandler: PropTypes.func.isRequired,
   };
 
@@ -38,11 +37,10 @@ export default class ShowList extends Component {
   render() {
     const {
       messages,
-      initialMessages,
     } = this.props;
 
-    const hasMessages = messages.length > 0;
-    const mes = hasMessages ? messages : initialMessages;
+    const hasMessages = messages.filter(m => !m.initial).length > 0;
+    const mes =  messages.filter(m => hasMessages === !m.initial);
 
     return (
       <div className="container">
@@ -73,7 +71,7 @@ export default class ShowList extends Component {
                 mes.map(message => {
                   console.log(message)
                   return (
-                    <div key={message.id}>
+                    <div key={message._id}>
                       <Item
                         message={message}
                         hasMessages={hasMessages}

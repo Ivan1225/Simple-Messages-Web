@@ -6,13 +6,13 @@ import '../styles/style.css';
 export default class ShowList extends Component {
   static propTypes = {
     message: PropTypes.object.isRequired,
-    // deleteMessageHandler: PropTypes.func.isRequired,
+    deleteMessage: PropTypes.func.isRequired,
     hasMessages: PropTypes.bool.isRequired,
   };
 
-  deleteMessage = (e, index) => {
+  deleteMessage = (e, id) => {
     e.preventDefault();
-    this.props.deleteMessageHandler(index);
+    this.props.deleteMessage(id);
   }
 
   render() {
@@ -23,15 +23,15 @@ export default class ShowList extends Component {
 
     return (
       <div className="row">
-        {hasMessages && (<Link className="item-link" exact strict to={`/${message.id}/view`} />)}
+        {hasMessages && (<Link className="item-link" to={`/${message._id}/view`} />)}
         <div className="col-md-10">
           <li className="list-group-item clearfix">
-            {message.text}
-            {/* {hasMessages && (
-              <span type="button" onClick={(e) => this.deleteMessage(e, index)} className="delete">
+            {message.content}
+            {hasMessages && (
+              <span type="button" onClick={(e) => this.deleteMessage(e, message._id)} className="delete">
                 &nbsp;&#10007;&nbsp;
               </span>)
-            } */}
+            }
           </li>
         </div>
       </div>

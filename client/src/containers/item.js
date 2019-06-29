@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 import Item from '../components/_item';
-// import { deleteMessageHandler } from '../actions/main';
+import { deleteMessage } from '../actions/main';
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     deleteMessageHandler: (id) => {
-//       dispatch(deleteMessageHandler(id));
-//     },
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteMessage: (id) => {
+      dispatch(deleteMessage(id));
+    },
+  };
+};
 
-// export default connect(null, mapDispatchToProps)(Item);
-export default connect(null, null)(Item);
+export default connect(null, mapDispatchToProps)(Item);

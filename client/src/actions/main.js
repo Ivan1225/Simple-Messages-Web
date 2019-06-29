@@ -17,10 +17,11 @@ export const createMessageSuccess = ({message}) => {
   }
 };
 
-export const updateMessageSuccess = ({message}) => {
+export const updateMessageSuccess = (id, content) => {
   return {
     type: MAIN.UPDATE_MESSAGE_SUCCESS,
-    message
+    id,
+    content
   }
 };
 export const deleteMessageSuccess = (id) => {
@@ -45,7 +46,7 @@ export const fetchMessages = () => {
 
 export const createMessage = (message) => {
   return (dispatch) => {
-    return Axios.post(apiUrl, {text: message})
+    return Axios.post(apiUrl, {content: message})
       .then(response => {
         dispatch(createMessageSuccess(response.data));
         console.log("Successfully create this message");
@@ -59,9 +60,9 @@ export const createMessage = (message) => {
 
 export const updateMessage = ({id, newMessage}) => {
   return (dispatch) => {
-    return Axios.put(`${apiUrl}/${id}`, {text: newMessage})
-      .then(response => {
-        dispatch(updateMessageSuccess(response.data))
+    return Axios.put(`${apiUrl}/${id}`, {content: newMessage})
+      .then(() => {
+        dispatch(updateMessageSuccess(id, newMessage))
         console.log("Successfully update this message");
       })
       .catch(error => {
@@ -73,7 +74,7 @@ export const updateMessage = ({id, newMessage}) => {
 
 export const deleteMessage = (id) => {
   return (dispatch) => {
-    return Axios.delete(apiUrl, id)
+    return Axios.delete(`${apiUrl}/${id}`)
       .then(response => {
         dispatch(deleteMessageSuccess(id))
       })

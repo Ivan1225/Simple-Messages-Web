@@ -6,7 +6,6 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     messages: state.main.messages,
-    initialMessages: state.main.initialMessages,
   };
 };
 

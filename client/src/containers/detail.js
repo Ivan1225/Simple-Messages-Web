@@ -6,7 +6,7 @@ const mapStateToProps = (state, { match, history }) => {
   const { messages } = state.main;
 
   return {
-    message: messages.find(m => m.id === parseInt(match.params.id, 10)),
+    message: messages.find(m => m._id === match.params.id),
     history,
   };
 };

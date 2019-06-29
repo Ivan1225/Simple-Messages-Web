@@ -111,6 +111,7 @@ body {
   position: absolute;
   right: 5px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .row {

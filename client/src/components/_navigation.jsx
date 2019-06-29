@@ -9,7 +9,6 @@ export default function Navigation() {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            exact
             to="/"
             >
             Home
@@ -18,7 +17,6 @@ export default function Navigation() {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            exact
             to="/about"
           >
             About

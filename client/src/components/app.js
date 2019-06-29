@@ -24,7 +24,7 @@ export default class App extends Component {
           <div>
             <Navigation />
             <Route exact path="/" component={Home} />
-            <Route exact strict path="/:id([a-zA-Z0-9-]+)/view" component={Detail} />
+            <Route exact strict path="/:id/view" component={Detail} />
             <Route exact strict path="/about" component={About} />
           </div>
         </Router>
