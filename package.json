@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node api/app.js",
-    "build": "cd client/ && serve -s build"
+    "build": "cd client/ && npm install && npm run build && serve -s build"
   },
   "cacheDirectories": [
     "node_modules",
