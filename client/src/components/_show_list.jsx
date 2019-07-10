@@ -69,7 +69,6 @@ export default class ShowList extends Component {
             <ul className="list-group">
               {
                 mes.map(message => {
-                  console.log(message)
                   return (
                     <div key={message._id}>
                       <Item

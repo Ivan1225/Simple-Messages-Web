@@ -11,14 +11,12 @@ export default (state = initialState, action) => {
         messages: action.data.messages,
       };
     case MAIN.CREATE_MESSAGE_SUCCESS:
-      console.log(action.message)
       return {
         ...state,
         messages: [...state.messages, Object.assign({}, action.message)]
       }
     case MAIN.UPDATE_MESSAGE_SUCCESS:
       const newState = {...state};
-      console.log(action)
       const index = newState.messages.findIndex(o => o._id === action.id);
       newState.messages[index].content = action.content;
 

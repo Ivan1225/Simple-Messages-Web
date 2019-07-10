@@ -35,7 +35,6 @@ export const fetchMessages = () => {
   return (dispatch) => {
     return Axios.get(apiUrl)
       .then(response => {
-        console.log(response)
         dispatch(fetchMessagesSuccess(response.data))
       })
       .catch(error => {

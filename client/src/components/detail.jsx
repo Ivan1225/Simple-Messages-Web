@@ -32,7 +32,6 @@ export default class Detail extends Component {
   }
 
   render() {
-    console.log(this.props.message)
     return (
       <Fragment>
         <h2>

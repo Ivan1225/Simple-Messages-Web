@@ -40,7 +40,6 @@ router.post('/', async (req, res) => {
 // })
 
 router.put('/:id', async (req, res) => {
-    console.log(req)
     const objectId = mongoose.Types.ObjectId(req.params.id)
     await Messages.updateOne({_id: objectId}, { $set: {content: req.body.content}})
         .then(message => res.json({

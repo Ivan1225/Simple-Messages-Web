@@ -3,7 +3,6 @@ import ShowList from '../components/_show_list';
 // import { clearMessagesHandler } from '../actions/main';
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     messages: state.main.messages,
   };
