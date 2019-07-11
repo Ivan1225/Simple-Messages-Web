@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { MAIN } from './action_types';
 
-const apiUrl = 'http://localhost:9000/messages';
+const apiUrl = '/messages';
 
 export const fetchMessagesSuccess = (data) => {
   return {

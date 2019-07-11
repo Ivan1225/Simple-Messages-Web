@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "proxy": "http://localhost:9000",
   "dependencies": {
     "react": "16.4.2",
     "react-dom": "16.4.2",
