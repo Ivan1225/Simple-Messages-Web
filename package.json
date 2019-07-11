@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node bin/www",
-    "build": "cd client/ && yarn install && yarn run build"
+    "build": "cd client/ && npm install && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
